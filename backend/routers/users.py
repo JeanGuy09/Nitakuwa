@@ -95,25 +95,29 @@ async def get_user_favorites(
             if job.get("companies"):
                 async for company in db.companies.find({"id": {"$in": job["companies"]}}):
                     # Convert ObjectId to string for serialization
-                    company["_id"] = str(company["_id"]) if "_id" in company else None
+                    if "_id" in company:
+                        company["_id"] = str(company["_id"])
                     companies.append(company)
             
             training = []
             if job.get("training"):
                 async for t in db.training.find({"id": {"$in": job["training"]}}):
                     # Convert ObjectId to string for serialization
-                    t["_id"] = str(t["_id"]) if "_id" in t else None
+                    if "_id" in t:
+                        t["_id"] = str(t["_id"])
                     training.append(t)
             
             testimonials = []
             if job.get("testimonials"):
                 async for testimonial in db.testimonials.find({"id": {"$in": job["testimonials"]}}):
                     # Convert ObjectId to string for serialization
-                    testimonial["_id"] = str(testimonial["_id"]) if "_id" in testimonial else None
+                    if "_id" in testimonial:
+                        testimonial["_id"] = str(testimonial["_id"])
                     testimonials.append(testimonial)
             
             # Convert ObjectId to string for serialization
-            job["_id"] = str(job["_id"]) if "_id" in job else None
+            if "_id" in job:
+                job["_id"] = str(job["_id"])
             job["companies"] = companies
             job["training"] = training
             job["testimonials"] = testimonials
