@@ -69,7 +69,7 @@ async def create_company(
         await db.companies.insert_one(company.dict())
         
         # Update statistics
-        from ..database import update_platform_statistics
+        from database import update_platform_statistics
         await update_platform_statistics()
         
         logger.info(f"Company created: {company.id}")
