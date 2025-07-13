@@ -154,7 +154,13 @@ const SectorsPage = () => {
 
       {/* Bottom CTA with enhanced background */}
       <section className="py-24 bg-gradient-to-r from-gray-800 to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M50 50c0-27.614 22.386-50 50-50v100c-27.614 0-50-22.386-50-50z" fill="%23ec4899" fill-opacity="0.1"/%3E%3C/svg%3E')] opacity-30" />
+        <div className="absolute inset-0 opacity-30">
+          <div style={{
+            backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M50 50c0-27.614 22.386-50 50-50v100c-27.614 0-50-22.386-50-50z\" fill=\"%23ec4899\" fill-opacity=\"0.1\"/%3E%3C/svg%3E')",
+            width: '100%',
+            height: '100%'
+          }} />
+        </div>
         
         <div className="container mx-auto px-4 text-center relative">
           <div className="max-w-4xl mx-auto">
