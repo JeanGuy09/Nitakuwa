@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from datetime import datetime
-from ..models import Job, JobCreate, JobUpdate, JobResponse, JobSearchFilters, Language
-from ..auth import get_current_admin_user, get_current_active_user
-from ..database import get_database
+from models import Job, JobCreate, JobUpdate, JobResponse, JobSearchFilters, Language
+from auth import get_current_admin_user, get_current_active_user
+from database import get_database
 import logging
 
 logger = logging.getLogger(__name__)
