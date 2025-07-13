@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
+import { Slider } from './ui/slider';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useAuth } from '../contexts/AuthContext';
 import { jobs } from '../data/mockData';
