@@ -22,27 +22,32 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 backdrop-blur-sm">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      {/* Top Pink Bar */}
+      <div className="bg-gradient-to-r from-pink-500 to-rose-500 h-1"></div>
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">DC</span>
+            <div className="flex items-center">
+              <span className="text-2xl font-bold text-gray-800 tracking-wide">KONGENGA</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">DRC Careers</span>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/sectors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Explore Sectors
+            <Link to="/" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+              Accueil
             </Link>
-            <Link to="/jobs" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              All Jobs
+            <Link to="/sectors" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+              Secteurs
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              About
+            <Link to="/jobs" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+              Carrières
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+              À propos
             </Link>
           </nav>
 
@@ -54,7 +59,7 @@ const Header = () => {
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                     <Avatar className="h-10 w-10">
                       <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+                      <AvatarFallback className="bg-gradient-to-br from-pink-500 to-rose-600 text-white">
                         {user.name?.charAt(0) || 'U'}
                       </AvatarFallback>
                     </Avatar>
@@ -68,42 +73,44 @@ const Header = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link to="/dashboard" className="cursor-pointer">
-                      Dashboard
+                      Tableau de bord
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/favorites" className="cursor-pointer">
-                      My Favorites
+                      Mes Favoris
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">
-                      Profile Settings
+                      Profil
                     </Link>
                   </DropdownMenuItem>
                   {user.role === 'site_manager' && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link to="/admin" className="cursor-pointer text-orange-600">
-                          Site Management
+                        <Link to="/admin" className="cursor-pointer text-pink-600">
+                          Gestion du site
                         </Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600">
-                    Logout
+                    Déconnexion
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <div className="flex items-center space-x-3">
                 <Link to="/login">
-                  <Button variant="ghost">Login</Button>
+                  <Button variant="ghost" className="hover:text-pink-600">Connexion</Button>
                 </Link>
                 <Link to="/register">
-                  <Button>Get Started</Button>
+                  <Button className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white">
+                    Commencer
+                  </Button>
                 </Link>
               </div>
             )}
@@ -126,14 +133,17 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <Link to="/sectors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                Explore Sectors
+              <Link to="/" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+                Accueil
               </Link>
-              <Link to="/jobs" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                All Jobs
+              <Link to="/sectors" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+                Secteurs
               </Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                About
+              <Link to="/jobs" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+                Carrières
+              </Link>
+              <Link to="/about" className="text-gray-700 hover:text-pink-600 transition-colors font-medium">
+                À propos
               </Link>
             </nav>
           </div>
