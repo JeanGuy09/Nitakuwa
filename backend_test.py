@@ -427,7 +427,7 @@ class KongengaAPITester:
             self.log_test("Jobs Management", False, f"Error: {str(e)}")
     
     def test_user_favorites(self):
-        """Test user favorites functionality"""
+        """Test user favorites functionality with detailed error debugging"""
         try:
             if not self.student_token:
                 self.log_test("User Favorites", False, "No student token available")
@@ -440,37 +440,59 @@ class KongengaAPITester:
                 jobs = jobs_response.json()
                 
                 if jobs:
-                    job_id = jobs[0].get('id')
+                    # Test with multiple jobs to ensure we have data
+                    job_ids = [job.get('id') for job in jobs[:3] if job.get('id')]
                     
-                    # Test add to favorites
-                    fav_response = self.make_request('POST', f'/users/favorites/{job_id}', 
-                                                   token=self.student_token)
-                    
-                    if fav_response.status_code == 200:
-                        fav_result = fav_response.json()
-                        self.log_test("Add Job to Favorites", True, 
-                                    f"Job {fav_result.get('action')} to favorites")
+                    for i, job_id in enumerate(job_ids):
+                        # Test add to favorites
+                        fav_response = self.make_request('POST', f'/users/favorites/{job_id}', 
+                                                       token=self.student_token)
                         
-                        # Test get favorites
-                        get_fav_response = self.make_request('GET', '/users/favorites', 
-                                                           token=self.student_token)
-                        
-                        if get_fav_response.status_code == 200:
-                            favorites = get_fav_response.json()
-                            self.log_test("Get User Favorites", True, 
-                                        f"Retrieved {len(favorites.get('favorites', []))} favorites")
+                        if fav_response.status_code == 200:
+                            fav_result = fav_response.json()
+                            self.log_test(f"Add Job {i+1} to Favorites", True, 
+                                        f"Job {fav_result.get('action')} to favorites")
                         else:
-                            self.log_test("Get User Favorites", False, 
-                                        f"Failed to get favorites: {get_fav_response.status_code}")
+                            self.log_test(f"Add Job {i+1} to Favorites", False, 
+                                        f"Failed to add favorite: {fav_response.status_code} - {fav_response.text}")
+                    
+                    # Test get favorites with detailed error capture
+                    get_fav_response = self.make_request('GET', '/users/favorites', 
+                                                       token=self.student_token)
+                    
+                    if get_fav_response.status_code == 200:
+                        favorites = get_fav_response.json()
+                        self.log_test("Get User Favorites", True, 
+                                    f"Retrieved {len(favorites.get('favorites', []))} favorites")
+                        
+                        # Log details of retrieved favorites for debugging
+                        if favorites.get('favorites'):
+                            for idx, fav in enumerate(favorites['favorites'][:2]):  # Show first 2
+                                print(f"   Favorite {idx+1}: {fav.get('title', {}).get('fr', 'No title')}")
+                                print(f"   Companies: {len(fav.get('companies', []))}")
+                                print(f"   Training: {len(fav.get('training', []))}")
+                                print(f"   Testimonials: {len(fav.get('testimonials', []))}")
                     else:
-                        self.log_test("Add Job to Favorites", False, 
-                                    f"Failed to add favorite: {fav_response.status_code}")
+                        error_detail = get_fav_response.text
+                        self.log_test("Get User Favorites", False, 
+                                    f"Failed to get favorites: {get_fav_response.status_code}")
+                        print(f"   Error details: {error_detail}")
+                        
+                        # Try to extract specific error information
+                        try:
+                            error_json = get_fav_response.json()
+                            if 'detail' in error_json:
+                                print(f"   API Error: {error_json['detail']}")
+                        except:
+                            pass
                 else:
                     self.log_test("User Favorites", False, "No jobs available for testing favorites")
             else:
                 self.log_test("User Favorites", False, "Failed to get jobs for favorites test")
         except Exception as e:
             self.log_test("User Favorites", False, f"Error: {str(e)}")
+            import traceback
+            print(f"   Full traceback: {traceback.format_exc()}")
     
     def test_testimonials_workflow(self):
         """Test testimonials creation and approval workflow"""
