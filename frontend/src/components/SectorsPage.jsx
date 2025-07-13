@@ -172,12 +172,12 @@ const SectorsPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-in fade-in-50 slide-in-from-bottom duration-700 delay-500">
               <Link to="/register">
-                <Button size="lg" className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 hover:scale-105">
+                <Button size="lg" className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">
                   Créer un compte
                 </Button>
               </Link>
               <Link to="/jobs">
-                <Button variant="outline" size="lg" className="px-10 py-4 text-lg border-2 border-gray-600 text-gray-300 hover:border-pink-500 hover:text-white hover:bg-pink-500/10 transition-all duration-300 hover:scale-105">
+                <Button variant="outline" size="lg" className="px-10 py-4 text-lg border-2 border-gray-600 text-gray-300 hover:border-blue-500 hover:text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-105">
                   Voir tous les emplois
                 </Button>
               </Link>
