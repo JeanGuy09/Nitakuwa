@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
-from ..models import User, UserResponse, UserUpdate, UserProgress
-from ..auth import get_current_active_user, get_current_admin_user
-from ..database import get_database
+from models import User, UserResponse, UserUpdate, UserProgress
+from auth import get_current_active_user, get_current_admin_user
+from database import get_database
 import logging
 
 logger = logging.getLogger(__name__)
