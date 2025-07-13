@@ -92,7 +92,7 @@ const SectorsPage = () => {
                     {sector.icon}
                     <div className={`absolute inset-0 bg-gradient-to-br ${sector.color} rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-700 -z-10`} />
                   </div>
-                  <CardTitle className="text-3xl font-bold text-white group-hover:text-pink-400 transition-colors mb-4">
+                  <CardTitle className="text-3xl font-bold text-white group-hover:text-blue-400 transition-colors mb-4">
                     {getMultilingualText(sector.name)}
                   </CardTitle>
                   <CardDescription className="text-gray-400 text-lg leading-relaxed">
