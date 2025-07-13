@@ -207,11 +207,14 @@ backend:
     file: "backend/routers/users.py"
     stuck_count: 1
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: false
         agent: "testing"
         comment: "Adding jobs to favorites works, but retrieving favorites fails with 500 error due to MongoDB ObjectId serialization issue. Error: ObjectId object is not iterable"
+      - working: false
+        agent: "main" 
+        comment: "Investigating ObjectId serialization issue in get_user_favorites endpoint. Need to test current state and apply fix."
 
   - task: "Testimonials Approval Workflow"
     implemented: true
