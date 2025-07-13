@@ -65,7 +65,7 @@ const SectorsPage = () => {
             <h1 className="text-6xl font-bold text-white mb-8 animate-in fade-in-50 slide-in-from-bottom duration-1000">
               Secteurs d'activité
             </h1>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-8 rounded-full" />
+            <div className="w-40 h-1.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mx-auto mb-8 rounded-full shadow-lg shadow-blue-500/30 animate-pulse" />
             <p className="text-2xl text-gray-300 leading-relaxed animate-in fade-in-50 slide-in-from-bottom duration-1000 delay-300">
               Découvrez les secteurs économiques clés de la République Démocratique du Congo. 
               Chaque secteur représente une opportunité unique de contribuer au développement du pays 
