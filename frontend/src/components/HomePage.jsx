@@ -212,7 +212,7 @@ const HomePage = () => {
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Choisissez parmi les secteurs qui stimulent la croissance économique et le développement en RDC
             </p>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mt-6 rounded-full" />
+            <div className="w-40 h-1.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mx-auto mt-6 rounded-full shadow-lg shadow-blue-500/30 animate-pulse" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
