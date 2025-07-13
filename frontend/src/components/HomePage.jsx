@@ -38,7 +38,7 @@ const HomePage = () => {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">{t('common.loading')}</p>
         </div>
       </div>
@@ -47,39 +47,46 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      {/* Hero Section with animated background */}
-      <section className="relative overflow-hidden">
-        {/* Background gradients and animations */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(236,72,153,0.3)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(147,51,234,0.3)_0%,transparent_50%)]" />
+      {/* Hero Section with Kinshasa cityscape background */}
+      <section className="relative overflow-hidden min-h-screen">
+        {/* Background image of Kinshasa/DRC landscape */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop&crop=center')`,
+          }}
+        />
+        {/* Dark overlay with DRC flag colors gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-blue-500/10 to-red-500/10" />
         
         {/* Animated grid pattern */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(236,72,153,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(236,72,153,0.3) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(255,193,7,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,193,7,0.3) 1px, transparent 1px)',
             backgroundSize: '50px 50px',
             animation: 'grid-move 20s ease-in-out infinite'
           }} />
         </div>
 
-        {/* Floating elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        {/* Floating elements representing DRC elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
         
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="max-w-6xl mx-auto">
+        <div className="container mx-auto px-4 py-20 relative z-10 min-h-screen flex items-center">
+          <div className="max-w-6xl mx-auto w-full">
             {/* Large Logo with enhanced animation */}
             <div className="text-center mb-16">
               <h1 className="text-9xl md:text-[12rem] font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600 bg-clip-text text-transparent mb-8 tracking-wider relative">
                 KONGENGA
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-transparent to-purple-500/20 bg-clip-text text-transparent animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-blue-500/20 to-red-500/20 bg-clip-text text-transparent animate-pulse" />
               </h1>
               
-              {/* Animated subtitle */}
+              {/* Animated subtitle with African touch */}
               <div className="text-2xl text-gray-400 animate-in fade-in-50 slide-in-from-bottom-10 duration-1000 delay-500">
-                <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">
-                  {t('nav.careers')} • RDC
+                <span className="bg-gradient-to-r from-yellow-400 via-blue-400 to-red-400 bg-clip-text text-transparent">
+                  {t('nav.careers')} • RDC • Afrique
                 </span>
               </div>
             </div>
@@ -97,19 +104,19 @@ const HomePage = () => {
                 <div className="flex flex-col sm:flex-row gap-6">
                   {user ? (
                     <Link to="/dashboard">
-                      <Button size="lg" className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-6 text-lg font-semibold shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 hover:scale-105">
+                      <Button size="lg" className="bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 hover:from-yellow-600 hover:via-blue-600 hover:to-red-600 text-white px-10 py-6 text-lg font-semibold shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105">
                         {t('nav.dashboard')}
                       </Button>
                     </Link>
                   ) : (
                     <>
                       <Link to="/register">
-                        <Button size="lg" className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-6 text-lg font-semibold shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 hover:scale-105">
+                        <Button size="lg" className="bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 hover:from-yellow-600 hover:via-blue-600 hover:to-red-600 text-white px-10 py-6 text-lg font-semibold shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105">
                           {t('home.cta.start')}
                         </Button>
                       </Link>
                       <Link to="/sectors">
-                        <Button variant="outline" size="lg" className="px-10 py-6 text-lg border-2 border-gray-600 text-gray-300 hover:border-pink-500 hover:text-white hover:bg-pink-500/10 transition-all duration-300 hover:scale-105">
+                        <Button variant="outline" size="lg" className="px-10 py-6 text-lg border-2 border-gray-600 text-gray-300 hover:border-yellow-500 hover:text-white hover:bg-yellow-500/10 transition-all duration-300 hover:scale-105">
                           {t('home.cta.explore')}
                         </Button>
                       </Link>
@@ -118,32 +125,35 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {/* Right Illustration with enhanced 3D effect */}
+              {/* Right Illustration with DRC tech scene */}
               <div className="order-1 lg:order-2 flex justify-center animate-in slide-in-from-right duration-1000 delay-1000">
                 <div className="relative group">
-                  <div className="w-96 h-96 bg-gradient-to-br from-pink-500/20 to-rose-600/20 rounded-3xl backdrop-blur-sm border border-pink-500/30 flex items-center justify-center transform group-hover:scale-105 transition-all duration-500">
+                  <div className="w-96 h-96 bg-gradient-to-br from-yellow-500/20 via-blue-500/20 to-red-500/20 rounded-3xl backdrop-blur-sm border border-yellow-500/30 flex items-center justify-center transform group-hover:scale-105 transition-all duration-500">
                     <div className="text-center">
-                      <div className="w-40 h-40 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl group-hover:rotate-6 transition-transform duration-500">
+                      <div className="w-40 h-40 bg-gradient-to-br from-yellow-500 via-blue-500 to-red-500 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl group-hover:rotate-6 transition-transform duration-500">
                         <span className="text-6xl animate-bounce">💻</span>
                       </div>
                       <p className="text-gray-300 font-semibold text-lg">{t('sectors.technology')}</p>
-                      <p className="text-gray-500">Construisez l'avenir</p>
+                      <p className="text-gray-500">Construisez l'avenir de la RDC</p>
                     </div>
                   </div>
                   
-                  {/* Enhanced floating elements */}
+                  {/* Enhanced floating elements with African symbols */}
                   <div className="absolute -top-6 -right-6 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-xl animate-bounce delay-300 hover:scale-110 transition-transform cursor-pointer">
                     <span className="text-2xl">⭐</span>
                   </div>
                   <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center shadow-xl animate-bounce delay-700 hover:scale-110 transition-transform cursor-pointer">
                     <span className="text-xl">🎯</span>
                   </div>
-                  <div className="absolute top-1/2 -left-8 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center shadow-xl animate-pulse hover:scale-110 transition-transform cursor-pointer">
+                  <div className="absolute top-1/2 -left-8 w-12 h-12 bg-red-400 rounded-full flex items-center justify-center shadow-xl animate-pulse hover:scale-110 transition-transform cursor-pointer">
                     <span className="text-lg">🚀</span>
                   </div>
+                  <div className="absolute top-1/4 right-0 w-14 h-14 bg-green-400 rounded-full flex items-center justify-center shadow-xl animate-bounce delay-1000 hover:scale-110 transition-transform cursor-pointer">
+                    <span className="text-lg">🌍</span>
+                  </div>
                   
-                  {/* Background glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-rose-600/20 rounded-3xl blur-2xl -z-10 group-hover:scale-110 transition-transform duration-500" />
+                  {/* Background glow effect with DRC colors */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 via-blue-500/20 to-red-500/20 rounded-3xl blur-2xl -z-10 group-hover:scale-110 transition-transform duration-500" />
                 </div>
               </div>
             </div>
@@ -153,35 +163,35 @@ const HomePage = () => {
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-pink-500 rounded-full mt-2 animate-pulse" />
+            <div className="w-1 h-3 bg-yellow-500 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </section>
 
-      {/* Statistics Section with enhanced design */}
-      <section className="py-20 bg-gradient-to-r from-gray-800 to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ec4899\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M30 30c0-16.569 13.431-30 30-30v60c-16.569 0-30-13.431-30-30z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-            width: '100%',
-            height: '100%'
-          }} />
-        </div>
+      {/* Statistics Section with Congo River background */}
+      <section className="py-20 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1920&h=600&fit=crop&crop=center')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-800/90 to-gray-900/95" />
         
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
               KONGENGA en chiffres
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-rose-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 mx-auto rounded-full" />
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {[
-              { value: statistics.totalJobs || 0, label: t('home.stats.jobs'), color: 'from-pink-500 to-rose-500', icon: '💼' },
-              { value: statistics.totalStudents || 0, label: t('home.stats.students'), color: 'from-green-500 to-emerald-500', icon: '🎓' },
-              { value: statistics.totalCompanies || 0, label: t('home.stats.companies'), color: 'from-blue-500 to-cyan-500', icon: '🏢' },
-              { value: statistics.successStories || 0, label: t('home.stats.success'), color: 'from-orange-500 to-yellow-500', icon: '🏆' }
+              { value: statistics.totalJobs || 0, label: t('home.stats.jobs'), color: 'from-yellow-500 to-yellow-600', icon: '💼' },
+              { value: statistics.totalStudents || 0, label: t('home.stats.students'), color: 'from-blue-500 to-blue-600', icon: '🎓' },
+              { value: statistics.totalCompanies || 0, label: t('home.stats.companies'), color: 'from-red-500 to-red-600', icon: '🏢' },
+              { value: statistics.successStories || 0, label: t('home.stats.success'), color: 'from-green-500 to-green-600', icon: '🏆' }
             ].map((stat, index) => (
               <div key={index} className="text-center group animate-in fade-in-50 slide-in-from-bottom duration-700" style={{ animationDelay: `${index * 200}ms` }}>
                 <div className="relative">
@@ -200,9 +210,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Sectors Section with enhanced cards */}
-      <section className="py-24 bg-gray-900 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-800/50 to-gray-900" />
+      {/* Sectors Section with African savanna background */}
+      <section className="py-24 relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1920&h=1080&fit=crop&crop=center')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/95 via-gray-800/90 to-gray-900/95" />
         
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
@@ -212,21 +228,24 @@ const HomePage = () => {
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Choisissez parmi les secteurs qui stimulent la croissance économique et le développement en RDC
             </p>
-            <div className="w-32 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto mt-6 rounded-full" />
+            <div className="w-32 h-1 bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 mx-auto mt-6 rounded-full" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {sectors.map((sector, index) => (
               <Card 
                 key={sector.id} 
-                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-sm hover:from-gray-700 hover:to-gray-800 animate-in fade-in-50 slide-in-from-bottom duration-700"
+                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm hover:from-gray-700/90 hover:to-gray-800/90 animate-in fade-in-50 slide-in-from-bottom duration-700"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardHeader className="pb-4">
-                  <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${sector.color} flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-2xl`}>
+                  <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${
+                    index % 3 === 0 ? 'from-yellow-500 to-yellow-600' :
+                    index % 3 === 1 ? 'from-blue-500 to-blue-600' : 'from-red-500 to-red-600'
+                  } flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-2xl`}>
                     {sector.icon}
                   </div>
-                  <CardTitle className="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors mb-3">
+                  <CardTitle className="text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-3">
                     {getMultilingualText(sector.name)}
                   </CardTitle>
                   <CardDescription className="text-gray-400 text-base leading-relaxed">
@@ -248,7 +267,11 @@ const HomePage = () => {
 
                     <Link to={`/sectors/${sector.id}`} className="block">
                       <Button 
-                        className="w-full bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-500/30 text-pink-400 hover:from-pink-500 hover:to-rose-500 hover:text-white transition-all duration-300 group-hover:shadow-lg group-hover:shadow-pink-500/25"
+                        className={`w-full bg-gradient-to-r ${
+                          index % 3 === 0 ? 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30 text-yellow-400 hover:from-yellow-500 hover:to-yellow-600' :
+                          index % 3 === 1 ? 'from-blue-500/20 to-blue-600/20 border-blue-500/30 text-blue-400 hover:from-blue-500 hover:to-blue-600' :
+                          'from-red-500/20 to-red-600/20 border-red-500/30 text-red-400 hover:from-red-500 hover:to-red-600'
+                        } border hover:text-white transition-all duration-300 group-hover:shadow-lg`}
                       >
                         Explorer {getMultilingualText(sector.name)}
                       </Button>
@@ -257,34 +280,37 @@ const HomePage = () => {
                 </CardContent>
                 
                 {/* Card background glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${sector.color} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-500 -z-10`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${
+                  index % 3 === 0 ? 'from-yellow-500 to-yellow-600' :
+                  index % 3 === 1 ? 'from-blue-500 to-blue-600' : 'from-red-500 to-red-600'
+                } opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-500 -z-10`} />
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section with enhanced background */}
-      <section className="py-24 bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 opacity-30">
-          <div style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M50 50c0-27.614 22.386-50 50-50v100c-27.614 0-50-22.386-50-50z\" fill=\"%23ffffff\" fill-opacity=\"0.1\"/%3E%3C/svg%3E')",
-            width: '100%',
-            height: '100%'
-          }} />
-        </div>
+      {/* CTA Section with young Congolese professionals background */}
+      <section className="py-24 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=800&fit=crop&crop=faces')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-800/85 to-gray-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-blue-500/10 to-red-500/10" />
         
         <div className="container mx-auto px-4 text-center relative">
-          <h2 className="text-5xl font-bold mb-8 animate-in fade-in-50 slide-in-from-bottom duration-700">
+          <h2 className="text-5xl font-bold text-white mb-8 animate-in fade-in-50 slide-in-from-bottom duration-700">
             Prêt à commencer votre parcours professionnel ?
           </h2>
-          <p className="text-2xl mb-12 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in fade-in-50 slide-in-from-bottom duration-700 delay-300">
+          <p className="text-2xl mb-12 max-w-3xl mx-auto text-gray-300 leading-relaxed animate-in fade-in-50 slide-in-from-bottom duration-700 delay-300">
             Rejoignez des milliers d'étudiants congolais qui construisent l'avenir de notre nation
           </p>
           {!user && (
             <Link to="/register">
-              <Button size="lg" className="bg-white text-pink-600 hover:bg-gray-100 px-12 py-6 text-xl font-semibold shadow-2xl hover:shadow-white/25 transition-all duration-300 hover:scale-105 animate-in fade-in-50 slide-in-from-bottom duration-700 delay-500">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 hover:from-yellow-600 hover:via-blue-600 hover:to-red-600 text-white px-12 py-6 text-xl font-semibold shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105 animate-in fade-in-50 slide-in-from-bottom duration-700 delay-500">
                 Créer votre compte gratuit
               </Button>
             </Link>
@@ -295,10 +321,10 @@ const HomePage = () => {
       {/* Chat Widget with enhanced animation */}
       <div className="fixed bottom-8 right-8 z-50">
         <div className="relative group">
-          <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white cursor-pointer shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 animate-bounce">
+          <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 rounded-full flex items-center justify-center text-white cursor-pointer shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-110 animate-bounce">
             <span className="text-2xl">💬</span>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
         </div>
       </div>
 

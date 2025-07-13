@@ -35,24 +35,24 @@ const Header = () => {
   return (
     <header className={`sticky top-0 z-50 transition-all duration-500 ${
       scrolled 
-        ? 'bg-gray-900/95 backdrop-blur-md shadow-2xl border-b border-pink-500/20' 
+        ? 'bg-gray-900/95 backdrop-blur-md shadow-2xl border-b border-yellow-500/20' 
         : 'bg-transparent'
     }`}>
-      {/* Animated gradient border */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent animate-pulse" />
+      {/* Animated gradient border with DRC colors */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-yellow-500 through-blue-500 to-red-500 animate-pulse" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo with animation */}
+          {/* Logo with DRC flag colors animation */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 group-hover:rotate-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 via-blue-500 to-red-500 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 group-hover:rotate-6">
                 <span className="text-white font-bold text-lg">K</span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 via-blue-500 to-red-500 rounded-xl blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300" />
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-pink-400 group-hover:to-rose-400 transition-all duration-300">
+              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-yellow-400 group-hover:via-blue-400 group-hover:to-red-400 transition-all duration-300">
                 KONGENGA
               </span>
               <span className="text-xs text-gray-500 -mt-1">{t('nav.careers')}</span>
@@ -73,7 +73,7 @@ const Header = () => {
                 className="relative text-gray-300 hover:text-white transition-all duration-300 font-medium group"
               >
                 {t(item.key)}
-                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-pink-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
             ))}
           </nav>
@@ -104,13 +104,13 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full group">
-                    <Avatar className="h-10 w-10 ring-2 ring-pink-500/20 group-hover:ring-pink-500/60 transition-all duration-300">
+                    <Avatar className="h-10 w-10 ring-2 ring-yellow-500/20 group-hover:ring-yellow-500/60 transition-all duration-300">
                       <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback className="bg-gradient-to-br from-pink-500 to-rose-600 text-white">
+                      <AvatarFallback className="bg-gradient-to-br from-yellow-500 via-blue-500 to-red-500 text-white">
                         {user.name?.charAt(0) || 'U'}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-pink-500/20 to-rose-600/20 group-hover:scale-110 transition-transform duration-300" />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-500/20 via-blue-500/20 to-red-500/20 group-hover:scale-110 transition-transform duration-300" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-gray-900/95 backdrop-blur-md border-gray-700" align="end" forceMount>
@@ -158,7 +158,7 @@ const Header = () => {
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-lg hover:shadow-pink-500/25 transition-all duration-300">
+                  <Button className="bg-gradient-to-r from-yellow-500 via-blue-500 to-red-500 hover:from-yellow-600 hover:via-blue-600 hover:to-red-600 text-white shadow-lg hover:shadow-yellow-500/25 transition-all duration-300">
                     {t('nav.register')}
                   </Button>
                 </Link>
