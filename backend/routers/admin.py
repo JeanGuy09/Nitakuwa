@@ -112,7 +112,7 @@ async def import_sample_data(
 ):
     """Import sample data (admin only)"""
     try:
-        from ..database import init_sample_data
+        from database import init_sample_data
         await init_sample_data()
         
         return {"status": "success", "message": "Sample data imported successfully"}
