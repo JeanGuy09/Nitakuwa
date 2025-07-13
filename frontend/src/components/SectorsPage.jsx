@@ -135,7 +135,7 @@ const SectorsPage = () => {
                     {/* CTA Button */}
                     <Link to={`/sectors/${sector.id}`} className="block">
                       <Button 
-                        className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white py-3 text-lg font-semibold shadow-xl hover:shadow-pink-500/25 transition-all duration-300 hover:scale-105"
+                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3 text-lg font-semibold shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
                       >
                         Explorer les opportunités
                         <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
