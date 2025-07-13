@@ -110,7 +110,7 @@ async def create_job(
         await db.jobs.insert_one(job.dict())
         
         # Update statistics
-        from ..database import update_platform_statistics
+        from database import update_platform_statistics
         await update_platform_statistics()
         
         job_response = await build_job_response(job.dict(), db)
