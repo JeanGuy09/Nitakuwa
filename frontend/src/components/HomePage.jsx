@@ -57,8 +57,7 @@ const HomePage = () => {
         {/* Animated grid pattern */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(236,72,153,0.3) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(236,72,153,0.3) 1px, transparent 1px)`,
+            backgroundImage: 'linear-gradient(rgba(236,72,153,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(236,72,153,0.3) 1px, transparent 1px)',
             backgroundSize: '50px 50px',
             animation: 'grid-move 20s ease-in-out infinite'
           }} />
