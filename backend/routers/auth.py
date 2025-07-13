@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
-from ..models import User, UserCreate, UserLogin, UserResponse
-from ..auth import authenticate_user, create_access_token, get_password_hash, ACCESS_TOKEN_EXPIRE_MINUTES
-from ..database import get_database
+from models import User, UserCreate, UserLogin, UserResponse
+from auth import authenticate_user, create_access_token, get_password_hash, ACCESS_TOKEN_EXPIRE_MINUTES
+from database import get_database
 import logging
 
 logger = logging.getLogger(__name__)
