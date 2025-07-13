@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 # Configuration
-BASE_URL = "https://0abdc8fe-6554-4d28-9391-a8d19184ebe9.preview.emergentagent.com/api"
+BASE_URL = "https://efe7a84c-9cfa-4ffe-bcc6-7a5adb0d358e.preview.emergentagent.com/api"
 ADMIN_EMAIL = "admin@careerplatform.cd"
 ADMIN_PASSWORD = "admin123"
 
