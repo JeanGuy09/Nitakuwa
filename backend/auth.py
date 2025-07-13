@@ -4,8 +4,8 @@ from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 import os
-from .models import User, UserRole
-from .database import get_database
+from models import User, UserRole
+from database import get_database
 
 # Security configuration
 SECRET_KEY = os.getenv("SECRET_KEY", "kongenga-secret-key-change-in-production")
