@@ -111,7 +111,7 @@ async def init_sample_data():
             return
         
         # Import sample data from mock data structure
-        from .sample_data import get_sample_sectors, get_sample_companies, get_sample_training, get_sample_jobs, get_sample_testimonials
+        from sample_data import get_sample_sectors, get_sample_companies, get_sample_training, get_sample_jobs, get_sample_testimonials
         
         # Insert sample sectors
         sectors = get_sample_sectors()
