@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { users } from '../data/mockData';
+import { authAPI, usersAPI, handleAPIError } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -18,128 +18,116 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check for stored user session
-    const storedUser = localStorage.getItem('drc_careers_user');
-    const storedFavorites = localStorage.getItem('drc_careers_favorites');
-    
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-    
-    setLoading(false);
+    const initializeAuth = async () => {
+      try {
+        const storedToken = localStorage.getItem('kongenga_token');
+        const storedUser = localStorage.getItem('kongenga_user');
+        
+        if (storedToken && storedUser) {
+          const userData = JSON.parse(storedUser);
+          setUser(userData);
+          
+          // Load user's favorites
+          try {
+            const favoritesData = await usersAPI.getFavorites();
+            setFavorites(favoritesData.favorites.map(job => job.id));
+          } catch (error) {
+            console.error('Failed to load favorites:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Auth initialization error:', error);
+        // Clear invalid stored data
+        localStorage.removeItem('kongenga_token');
+        localStorage.removeItem('kongenga_user');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
   const login = async (email, password, userType = 'student') => {
     try {
-      // Mock authentication
-      let mockUser = null;
+      const response = await authAPI.login(email, password, userType);
       
-      if (userType === 'student') {
-        mockUser = users.students.find(u => u.email === email);
-        if (!mockUser) {
-          // Create new student user for demo
-          mockUser = {
-            id: `student_${Date.now()}`,
-            name: email.split('@')[0].replace('.', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-            email,
-            university: 'University of Kinshasa',
-            year: 'Third Year',
-            field: 'General Studies',
-            favoriteJobs: [],
-            progress: {
-              profileComplete: 30,
-              jobsExplored: 0,
-              trainingsStarted: 0,
-              skillsAssessed: 0
-            },
-            role: 'student'
-          };
-        } else {
-          mockUser.role = 'student';
-        }
-      } else if (userType === 'manager') {
-        if (email === 'admin@careerplatform.cd' && password === 'admin123') {
-          mockUser = {
-            ...users.managers[0],
-            role: 'site_manager'
-          };
-        }
-      }
-
-      if (mockUser) {
-        setUser(mockUser);
-        localStorage.setItem('drc_careers_user', JSON.stringify(mockUser));
+      if (response.access_token) {
+        localStorage.setItem('kongenga_token', response.access_token);
+        localStorage.setItem('kongenga_user', JSON.stringify(response.user));
+        setUser(response.user);
         
         // Load user's favorites
-        if (mockUser.favoriteJobs) {
-          setFavorites(mockUser.favoriteJobs);
-          localStorage.setItem('drc_careers_favorites', JSON.stringify(mockUser.favoriteJobs));
+        try {
+          const favoritesData = await usersAPI.getFavorites();
+          setFavorites(favoritesData.favorites.map(job => job.id));
+        } catch (error) {
+          console.error('Failed to load favorites:', error);
         }
         
-        return { success: true, user: mockUser };
+        return { success: true, user: response.user };
       } else {
-        return { success: false, error: 'Invalid credentials' };
+        return { success: false, error: 'Login failed' };
       }
     } catch (error) {
-      return { success: false, error: 'Login failed' };
+      console.error('Login error:', error);
+      return { success: false, error: handleAPIError(error, 'Login failed') };
     }
   };
 
   const register = async (userData) => {
     try {
-      // Mock registration
-      const newUser = {
-        id: `student_${Date.now()}`,
-        name: userData.name,
-        email: userData.email,
-        university: userData.university || 'University of Kinshasa',
-        year: userData.year || 'First Year',
-        field: userData.field || 'General Studies',
-        favoriteJobs: [],
-        progress: {
-          profileComplete: 50,
-          jobsExplored: 0,
-          trainingsStarted: 0,
-          skillsAssessed: 0
-        },
-        role: 'student'
-      };
-
-      setUser(newUser);
-      localStorage.setItem('drc_careers_user', JSON.stringify(newUser));
+      const response = await authAPI.register(userData);
       
-      return { success: true, user: newUser };
+      if (response.access_token) {
+        localStorage.setItem('kongenga_token', response.access_token);
+        localStorage.setItem('kongenga_user', JSON.stringify(response.user));
+        setUser(response.user);
+        setFavorites([]);
+        
+        return { success: true, user: response.user };
+      } else {
+        return { success: false, error: 'Registration failed' };
+      }
     } catch (error) {
-      return { success: false, error: 'Registration failed' };
+      console.error('Registration error:', error);
+      return { success: false, error: handleAPIError(error, 'Registration failed') };
     }
   };
 
   const logout = () => {
     setUser(null);
     setFavorites([]);
-    localStorage.removeItem('drc_careers_user');
-    localStorage.removeItem('drc_careers_favorites');
+    localStorage.removeItem('kongenga_token');
+    localStorage.removeItem('kongenga_user');
   };
 
-  const toggleFavorite = (jobId) => {
-    let newFavorites;
-    if (favorites.includes(jobId)) {
-      newFavorites = favorites.filter(id => id !== jobId);
-    } else {
-      newFavorites = [...favorites, jobId];
-    }
-    
-    setFavorites(newFavorites);
-    localStorage.setItem('drc_careers_favorites', JSON.stringify(newFavorites));
-    
-    // Update user data
-    if (user) {
-      const updatedUser = { ...user, favoriteJobs: newFavorites };
-      setUser(updatedUser);
-      localStorage.setItem('drc_careers_user', JSON.stringify(updatedUser));
+  const toggleFavorite = async (jobId) => {
+    if (!user) return;
+
+    try {
+      const response = await usersAPI.toggleFavorite(jobId);
+      
+      if (response.status === 'success') {
+        if (response.action === 'added') {
+          setFavorites(prev => [...prev, jobId]);
+        } else {
+          setFavorites(prev => prev.filter(id => id !== jobId));
+        }
+        
+        // Update user data
+        const updatedUser = { ...user, favoriteJobs: response.action === 'added' 
+          ? [...(user.favoriteJobs || []), jobId] 
+          : (user.favoriteJobs || []).filter(id => id !== jobId) 
+        };
+        setUser(updatedUser);
+        localStorage.setItem('kongenga_user', JSON.stringify(updatedUser));
+        
+        return response;
+      }
+    } catch (error) {
+      console.error('Toggle favorite error:', error);
+      throw new Error(handleAPIError(error, 'Failed to update favorites'));
     }
   };
 
@@ -147,14 +135,55 @@ export const AuthProvider = ({ children }) => {
     return favorites.includes(jobId);
   };
 
-  const updateProgress = (progressUpdate) => {
-    if (user) {
-      const updatedUser = {
-        ...user,
-        progress: { ...user.progress, ...progressUpdate }
-      };
+  const updateProgress = async (progressUpdate) => {
+    if (!user) return;
+
+    try {
+      const newProgress = { ...user.progress, ...progressUpdate };
+      await usersAPI.updateProgress(newProgress);
+      
+      const updatedUser = { ...user, progress: newProgress };
       setUser(updatedUser);
-      localStorage.setItem('drc_careers_user', JSON.stringify(updatedUser));
+      localStorage.setItem('kongenga_user', JSON.stringify(updatedUser));
+      
+      return newProgress;
+    } catch (error) {
+      console.error('Update progress error:', error);
+      throw new Error(handleAPIError(error, 'Failed to update progress'));
+    }
+  };
+
+  const updateProfile = async (profileData) => {
+    if (!user) return;
+
+    try {
+      const updatedUser = await usersAPI.updateProfile(profileData);
+      setUser(updatedUser);
+      localStorage.setItem('kongenga_user', JSON.stringify(updatedUser));
+      
+      return { success: true, user: updatedUser };
+    } catch (error) {
+      console.error('Update profile error:', error);
+      return { success: false, error: handleAPIError(error, 'Failed to update profile') };
+    }
+  };
+
+  const refreshUserData = async () => {
+    if (!user) return;
+
+    try {
+      const userData = await usersAPI.getProfile();
+      setUser(userData);
+      localStorage.setItem('kongenga_user', JSON.stringify(userData));
+      
+      // Refresh favorites
+      const favoritesData = await usersAPI.getFavorites();
+      setFavorites(favoritesData.favorites.map(job => job.id));
+      
+      return userData;
+    } catch (error) {
+      console.error('Refresh user data error:', error);
+      throw new Error(handleAPIError(error, 'Failed to refresh user data'));
     }
   };
 
@@ -167,7 +196,9 @@ export const AuthProvider = ({ children }) => {
     logout,
     toggleFavorite,
     isFavorite,
-    updateProgress
+    updateProgress,
+    updateProfile,
+    refreshUserData
   };
 
   return (
