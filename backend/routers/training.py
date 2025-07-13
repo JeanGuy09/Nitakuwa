@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List, Optional
-from ..models import Training, TrainingCreate
-from ..auth import get_current_admin_user
-from ..database import get_database
+from models import Training, TrainingCreate
+from auth import get_current_admin_user
+from database import get_database
 import logging
 
 logger = logging.getLogger(__name__)
