@@ -173,7 +173,7 @@ const HomePage = () => {
             <h2 className="text-3xl font-bold text-white mb-4">
               KONGENGA en chiffres
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto rounded-full" />
+            <div className="w-32 h-1.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mx-auto rounded-full shadow-lg shadow-blue-500/30 animate-pulse" />
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
