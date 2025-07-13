@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from ..models import PlatformStatistics
-from ..auth import get_current_admin_user
-from ..database import get_database, update_platform_statistics
+from models import PlatformStatistics
+from auth import get_current_admin_user
+from database import get_database, update_platform_statistics
 import logging
 from datetime import datetime
 
