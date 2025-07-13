@@ -118,15 +118,15 @@ const SectorsPage = () => {
                       <h4 className="font-semibold text-white mb-3">Pourquoi ce secteur ?</h4>
                       <ul className="text-sm text-gray-400 space-y-2">
                         <li className="flex items-center space-x-2">
-                          <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                           <span>Forte demande de talents qualifiés</span>
                         </li>
                         <li className="flex items-center space-x-2">
-                          <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                           <span>Impact direct sur le développement</span>
                         </li>
                         <li className="flex items-center space-x-2">
-                          <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
+                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                           <span>Opportunités de croissance rapide</span>
                         </li>
                       </ul>
