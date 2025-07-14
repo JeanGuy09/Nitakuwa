@@ -11,6 +11,8 @@ import { jobs } from '../data/mockData';
 
 const DashboardPage = () => {
   const { user, favorites } = useAuth();
+  const [careerInterest, setCareerInterest] = useState([75]);
+  const [skillLevel, setSkillLevel] = useState([60]);
 
   if (!user) {
     return (
