@@ -94,9 +94,9 @@ const DashboardPage = () => {
                         <span className="text-sm font-medium text-gray-700">Profil complété</span>
                         <span className="text-sm text-gray-500">{user.progress.profileComplete}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-gray-200 rounded-full h-3 shadow-inner">
                         <div 
-                          className={`h-2 rounded-full ${getProgressColor(user.progress.profileComplete)}`}
+                          className="h-3 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 shadow-lg shadow-blue-500/25 transition-all duration-500"
                           style={{ width: `${user.progress.profileComplete}%` }}
                         ></div>
                       </div>
