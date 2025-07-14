@@ -134,6 +134,67 @@ const DashboardPage = () => {
               </CardContent>
             </Card>
 
+            {/* Career Preferences with Gradient Blue Sliders */}
+            <Card className="bg-gradient-to-br from-gray-900 to-gray-800 border-blue-500/20">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2 text-white">
+                  <span>🎯</span>
+                  <span>Préférences de carrière</span>
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Ajustez vos préférences pour obtenir des recommandations personnalisées
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-8">
+                  <div>
+                    <div className="flex justify-between items-center mb-4">
+                      <label className="text-sm font-medium text-white">Niveau d'intérêt pour la technologie</label>
+                      <span className="text-sm text-blue-400 font-semibold">{careerInterest[0]}%</span>
+                    </div>
+                    <Slider
+                      value={careerInterest}
+                      onValueChange={setCareerInterest}
+                      max={100}
+                      step={1}
+                      className="w-full"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-2">
+                      <span>Débutant</span>
+                      <span>Expert</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-4">
+                      <label className="text-sm font-medium text-white">Niveau de compétences actuel</label>
+                      <span className="text-sm text-blue-400 font-semibold">{skillLevel[0]}%</span>
+                    </div>
+                    <Slider
+                      value={skillLevel}
+                      onValueChange={setSkillLevel}
+                      max={100}
+                      step={1}
+                      className="w-full"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-2">
+                      <span>Novice</span>
+                      <span>Professionnel</span>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4 mt-6">
+                    <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg shadow-blue-500/25 transition-all duration-300">
+                      Sauvegarder les préférences
+                    </Button>
+                    <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10">
+                      Réinitialiser
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Favorite Jobs */}
             <Card>
               <CardHeader>
